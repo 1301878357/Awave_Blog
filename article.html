@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width" />
+	<meta name="author" content="www.Awave.vip" />
+	<meta name="robots" content="all" />
+	<title>我的博客</title>
+	<link rel="shortcut icon" href="./image/gc.jpg" type="image/x-icon" />
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="layui/css/layui.css" />
+	<link rel="stylesheet" href="css/master.css" />
+	<link rel="stylesheet" href="css/gloable.css" />
+	<link rel="stylesheet" href="css/nprogress.css" />
+	<link rel="stylesheet" href="css/blog.css" />
+	<link href="css/player.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div id="jp_container_N" class="jp-video jp-video-270p jp-state-playing" role="application"
+		aria-label="media player" style="left: 0px; height: 175px; bottom: 100px;">
+		<div class="jp-type-playlist">
+			<div id="jquery_jplayer_N" class="jp-jplayer" style="width: 90px; height: 90px;">
+
+				<audio id="jp_audio_0" preload="metadata"
+					src="http://music.163.com/song/media/outer/url?id=31473269.mp3" title="那英"></audio>
+				<video id="jp_video_0" preload="metadata" title="那英" style="width: 0px; height: 0px;"></video>
+			</div>
+			<div class="jp-gui">
+				<div class="jp-video-play" style="display: none;">
+					<button class="jp-video-play-icon" role="button" tabindex="0">播放</button>
+				</div>
+				<div class="jp-interface">
+					<div class="jp-progress">
+						<div class="jp-seek-bar" style="width: 100%;">
+							<div class="jp-play-bar" style="overflow: hidden; width: 97.5219%;"></div>
+						</div>
+					</div>
+					<div class="jp-current-time" role="timer" aria-label="time">04:11</div>
+					<div class="jp-duration" role="timer" aria-label="duration">04:17</div>
+					<div class="jp-controls-holder">
+						<div class="jp-controls">
+							<button class="jp-previous" role="button" tabindex="0">上一曲</button>
+							<button class="jp-play" role="button" tabindex="0">播放</button>
+							<button class="jp-next" role="button" tabindex="0">下一曲</button>
+							<button class="jp-stop" role="button" tabindex="0">暂停</button>
+						</div>
+						<div class="jp-volume-controls">
+							<button class="jp-mute" role="button" tabindex="0">静音</button>
+							<button class="jp-volume-max" role="button" tabindex="0">最大音量</button>
+							<div class="jp-volume-bar">
+								<div class="jp-volume-bar-value" style="width: 10%;"></div>
+							</div>
+						</div>
+						<div class="jp-toggles">
+							<button class="jp-repeat" role="button" tabindex="0">重复</button>
+							<button class="jp-shuffle" role="button" tabindex="0">随机</button>
+							<!--<button class="jp-full-screen" role="button" tabindex="0">全屏</button>-->
+						</div>
+					</div>
+					<div class="jp-details" style="display: none;">
+						<div class="jp-title" aria-label="title">那英</div>
+					</div>
+				</div>
+			</div>
+			<div class="jp-playlist">
+				<div class="jp-playlist-box" style="height: 80px;">
+					<ul style="height: 1000px; display: block; top: 0px;">
+						<li>
+							<div>
+								<a href="javascript:;" class="jp-playlist-item-remove">×</a>
+								<a href="javascript:;" class="jp-playlist-item" tabindex="0">默 <span class="jp-artist"
+										style="transform: rotate(180deg);"> - 那英</span></a>
+							</div>
+						</li>
+						<li class="">
+							<div>
+								<a href="javascript:;" class="jp-playlist-item-remove">×</a>
+								<a href="javascript:;" class="jp-playlist-item" tabindex="0">Ellens Gesang III D839
+									<span class="jp-artist" style="transform: rotate(180deg);"> - Geoffrey
+										Parsons</span></a>
+							</div>
+						</li>
+						<li>
+							<div>
+								<a href="javascript:;" class="jp-playlist-item-remove">×</a>
+								<a href="javascript:;" class="jp-playlist-item" tabindex="0">Fire <span
+										class="jp-artist" style="transform: rotate(180deg);"> - Said The Sky</span></a>
+							</div>
+						</li>
+						<li class="jp-playlist-current" style="display: list-item;">
+							<div>
+								<a href="javascript:;" class="jp-playlist-item-remove">×</a>
+								<a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="0">兰若词
+									<span class="jp-artist" style="transform: rotate(180deg);"> - 刘亦菲</span></a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="jp-no-solution" style="display: none;">
+				<span style="transform: rotate(180deg);">升级需要</span> 您浏览器赞不支持播放，请更新版本
+				<a href="http://get.adobe.com/flashplayer" target="_blank">Flash插件</a>.
+			</div>
+		</div>
+		<!--歌曲列表滚动条-->
+		<div class="scrollBar" style="display: block;">
+			<div class="bar" style="top: 0px;"></div>
+		</div>
+		<!--播放器展开隐藏按钮-->
+		<button type="button" class="folded_bt" title="点击收缩" id="btnfold" style="top: 52px;">
+			<span style="transform: rotate(180deg);"></span>
+		</button>
+		<div id="listRemove" style="display: block;"></div>
+		<!--移除全部歌曲按钮-->
+		<div id="listClose"></div>
+		<!--歌曲列表展开收缩按钮-->
+	</div>
+	<!-- 左侧播放器 结束-->
+
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="js/music.js"></script>
+
+
+	<!--播放器js-->
+	<script src="js/player.js"></script>
+	<script src="js/playlist.js"></script>
+	<script src="js/player_database.js"></script>
+	<!--播放器js-->
+
+	<div class="header">
+	</div>
+	<header class="gird-header">
+		<div class="header-fixed">
+			<div class="header-inner">
+				<a href="javascript:void(0)" class="header-logo" id="logo">Mr.liu</a>
+				<nav class="nav" id="nav">
+					<ul>
+						<li><a href="index.html">首页</a></li>
+						<li><a href="article.html">博客</a></li>
+						<li><a href="message.html">留言</a></li>
+						<li><a href="diary.html">日记</a></li>
+						<li><a href="issue.html">发布</a></li>
+						<li><a href="link.html">友链</a></li>
+					</ul>
+				</nav>
+				<a href="/User/QQLogin" class="blog-user">
+					<i><img class="img" src="./image/tx.jpg"></i>
+				</a>
+				<a class="phone-menu">
+					<i></i>
+					<i></i>
+					<i></i>
+				</a>
+			</div>
+		</div>
+	</header>
+	<div class="doc-container" id="doc-container">
+		<div class="container-fixed">
+			<div class="col-content">
+				<div class="inner">
+					<article class="article-list bloglist" id="LAY_bloglist">
+						<section class="article-item zoomIn article">
+							<div class="fc-flag">置顶</div>
+							<h5 class="title">
+								<span class="fc-blue">【原创】</span>
+								<a href="read.html">Java学习路线推荐</a>
+							</h5>
+							<div class="time">
+								<span class="day">1</span>
+								<span class="month fs-18">7<span class="fs-14">月</span></span>
+								<span class="year fs-18 ml10">2020</span>
+							</div>
+							<div class="content">
+								<a href="read.html" class="cover img-light">
+									<img src="image/java.jpg">
+								</a>
+								这篇文章是为了介绍自己自学用过的Java视频资料。本套整合教程总共180+G，共450+小时。考虑到绝大部分视频至少要看两遍，而且视频总时长并不代表学习时长，所以零基础初学者总学习时间大约为：600小时视频时长
+								+ 100小时理解 +
+								100小时练习，至少需要800小时。你可能觉得自己能一天学习8小时，实际上平均下来每天能学4小时都算厉害了。总会有各种原因，比如当天内容太难，公司聚会，要出差等等。如果周末你也是坚持学习，那么最理想状况下，6个半月就可以学完，达到工作后能被人带的水平。但我知道那其实基本不可能。
+							</div>
+							<div class="read-more">
+								<a href="read.html" class="fc-black f-fwb">继续阅读</a>
+							</div>
+							<aside class="f-oh footer">
+								<div class="f-fl tags">
+									<span class="fa fa-tags fs-16"></span>
+									<a class="tag">java路线</a>
+								</div>
+								<div class="f-fr">
+									<span class="read">
+										<i class="fa fa-eye fs-16"></i>
+										<i class="num">213</i>
+									</span>
+									<span class="ml20">
+										<i class="fa fa-comments fs-16"></i>
+										<a href="javascript:void(0)" class="num fc-grey">1</a>
+									</span>
+								</div>
+							</aside>
+						</section>
+						<section class="article-item zoomIn article">
+							<div class="fc-flag">置顶</div>
+							<h5 class="title">
+								<span class="fc-blue">【原创】</span>
+								<a href="read.html">Java学习路线推荐</a>
+							</h5>
+							<div class="time">
+								<span class="day">1</span>
+								<span class="month fs-18">7<span class="fs-14">月</span></span>
+								<span class="year fs-18 ml10">2020</span>
+							</div>
+							<div class="content">
+								<a href="read.html" class="cover img-light">
+									<img src="image/java.jpg">
+								</a>
+								这篇文章是为了介绍自己自学用过的Java视频资料。本套整合教程总共180+G，共450+小时。考虑到绝大部分视频至少要看两遍，而且视频总时长并不代表学习时长，所以零基础初学者总学习时间大约为：600小时视频时长
+								+ 100小时理解 +
+								100小时练习，至少需要800小时。你可能觉得自己能一天学习8小时，实际上平均下来每天能学4小时都算厉害了。总会有各种原因，比如当天内容太难，公司聚会，要出差等等。如果周末你也是坚持学习，那么最理想状况下，6个半月就可以学完，达到工作后能被人带的水平。但我知道那其实基本不可能。
+							</div>
+							<div class="read-more">
+								<a href="read.html" class="fc-black f-fwb">继续阅读</a>
+							</div>
+							<aside class="f-oh footer">
+								<div class="f-fl tags">
+									<span class="fa fa-tags fs-16"></span>
+									<a class="tag">java路线</a>
+								</div>
+								<div class="f-fr">
+									<span class="read">
+										<i class="fa fa-eye fs-16"></i>
+										<i class="num">213</i>
+									</span>
+									<span class="ml20">
+										<i class="fa fa-comments fs-16"></i>
+										<a href="javascript:void(0)" class="num fc-grey">1</a>
+									</span>
+								</div>
+							</aside>
+						</section>
+						<section class="article-item zoomIn article">
+							<div class="fc-flag">置顶</div>
+							<h5 class="title">
+								<span class="fc-blue">【原创】</span>
+								<a href="read.html">Java学习路线推荐</a>
+							</h5>
+							<div class="time">
+								<span class="day">1</span>
+								<span class="month fs-18">7<span class="fs-14">月</span></span>
+								<span class="year fs-18 ml10">2020</span>
+							</div>
+							<div class="content">
+								<a href="read.html" class="cover img-light">
+									<img src="image/java.jpg">
+								</a>
+								这篇文章是为了介绍自己自学用过的Java视频资料。本套整合教程总共180+G，共450+小时。考虑到绝大部分视频至少要看两遍，而且视频总时长并不代表学习时长，所以零基础初学者总学习时间大约为：600小时视频时长
+								+ 100小时理解 +
+								100小时练习，至少需要800小时。你可能觉得自己能一天学习8小时，实际上平均下来每天能学4小时都算厉害了。总会有各种原因，比如当天内容太难，公司聚会，要出差等等。如果周末你也是坚持学习，那么最理想状况下，6个半月就可以学完，达到工作后能被人带的水平。但我知道那其实基本不可能。
+							</div>
+							<div class="read-more">
+								<a href="read.html" class="fc-black f-fwb">继续阅读</a>
+							</div>
+							<aside class="f-oh footer">
+								<div class="f-fl tags">
+									<span class="fa fa-tags fs-16"></span>
+									<a class="tag">java路线</a>
+								</div>
+								<div class="f-fr">
+									<span class="read">
+										<i class="fa fa-eye fs-16"></i>
+										<i class="num">213</i>
+									</span>
+									<span class="ml20">
+										<i class="fa fa-comments fs-16"></i>
+										<a href="javascript:void(0)" class="num fc-grey">1</a>
+									</span>
+								</div>
+							</aside>
+						</section>
+						<section class="article-item zoomIn article">
+							<div class="fc-flag">置顶</div>
+							<h5 class="title">
+								<span class="fc-blue">【原创】</span>
+								<a href="read.html">Java学习路线推荐</a>
+							</h5>
+							<div class="time">
+								<span class="day">1</span>
+								<span class="month fs-18">7<span class="fs-14">月</span></span>
+								<span class="year fs-18 ml10">2020</span>
+							</div>
+							<div class="content">
+								<a href="read.html" class="cover img-light">
+									<img src="image/java.jpg">
+								</a>
+								这篇文章是为了介绍自己自学用过的Java视频资料。本套整合教程总共180+G，共450+小时。考虑到绝大部分视频至少要看两遍，而且视频总时长并不代表学习时长，所以零基础初学者总学习时间大约为：600小时视频时长
+								+ 100小时理解 +
+								100小时练习，至少需要800小时。你可能觉得自己能一天学习8小时，实际上平均下来每天能学4小时都算厉害了。总会有各种原因，比如当天内容太难，公司聚会，要出差等等。如果周末你也是坚持学习，那么最理想状况下，6个半月就可以学完，达到工作后能被人带的水平。但我知道那其实基本不可能。
+							</div>
+							<div class="read-more">
+								<a href="read.html" class="fc-black f-fwb">继续阅读</a>
+							</div>
+							<aside class="f-oh footer">
+								<div class="f-fl tags">
+									<span class="fa fa-tags fs-16"></span>
+									<a class="tag">java路线</a>
+								</div>
+								<div class="f-fr">
+									<span class="read">
+										<i class="fa fa-eye fs-16"></i>
+										<i class="num">213</i>
+									</span>
+									<span class="ml20">
+										<i class="fa fa-comments fs-16"></i>
+										<a href="javascript:void(0)" class="num fc-grey">1</a>
+									</span>
+								</div>
+							</aside>
+						</section>
+						<section class="article-item zoomIn article">
+							<div class="fc-flag">置顶</div>
+							<h5 class="title">
+								<span class="fc-blue">【原创】</span>
+								<a href="read.html">Java学习路线推荐</a>
+							</h5>
+							<div class="time">
+								<span class="day">1</span>
+								<span class="month fs-18">7<span class="fs-14">月</span></span>
+								<span class="year fs-18 ml10">2020</span>
+							</div>
+							<div class="content">
+								<a href="read.html" class="cover img-light">
+									<img src="image/java.jpg">
+								</a>
+								这篇文章是为了介绍自己自学用过的Java视频资料。本套整合教程总共180+G，共450+小时。考虑到绝大部分视频至少要看两遍，而且视频总时长并不代表学习时长，所以零基础初学者总学习时间大约为：600小时视频时长
+								+ 100小时理解 +
+								100小时练习，至少需要800小时。你可能觉得自己能一天学习8小时，实际上平均下来每天能学4小时都算厉害了。总会有各种原因，比如当天内容太难，公司聚会，要出差等等。如果周末你也是坚持学习，那么最理想状况下，6个半月就可以学完，达到工作后能被人带的水平。但我知道那其实基本不可能。
+							</div>
+							<div class="read-more">
+								<a href="read.html" class="fc-black f-fwb">继续阅读</a>
+							</div>
+							<aside class="f-oh footer">
+								<div class="f-fl tags">
+									<span class="fa fa-tags fs-16"></span>
+									<a class="tag">java路线</a>
+								</div>
+								<div class="f-fr">
+									<span class="read">
+										<i class="fa fa-eye fs-16"></i>
+										<i class="num">213</i>
+									</span>
+									<span class="ml20">
+										<i class="fa fa-comments fs-16"></i>
+										<a href="javascript:void(0)" class="num fc-grey">1</a>
+									</span>
+								</div>
+							</aside>
+						</section>
+						<section class="article-item zoomIn article">
+							<div class="fc-flag">置顶</div>
+							<h5 class="title">
+								<span class="fc-blue">【原创】</span>
+								<a href="read.html">Java学习路线推荐</a>
+							</h5>
+							<div class="time">
+								<span class="day">1</span>
+								<span class="month fs-18">7<span class="fs-14">月</span></span>
+								<span class="year fs-18 ml10">2020</span>
+							</div>
+							<div class="content">
+								<a href="read.html" class="cover img-light">
+									<img src="image/java.jpg">
+								</a>
+								这篇文章是为了介绍自己自学用过的Java视频资料。本套整合教程总共180+G，共450+小时。考虑到绝大部分视频至少要看两遍，而且视频总时长并不代表学习时长，所以零基础初学者总学习时间大约为：600小时视频时长
+								+ 100小时理解 +
+								100小时练习，至少需要800小时。你可能觉得自己能一天学习8小时，实际上平均下来每天能学4小时都算厉害了。总会有各种原因，比如当天内容太难，公司聚会，要出差等等。如果周末你也是坚持学习，那么最理想状况下，6个半月就可以学完，达到工作后能被人带的水平。但我知道那其实基本不可能。
+							</div>
+							<div class="read-more">
+								<a href="read.html" class="fc-black f-fwb">继续阅读</a>
+							</div>
+							<aside class="f-oh footer">
+								<div class="f-fl tags">
+									<span class="fa fa-tags fs-16"></span>
+									<a class="tag">java路线</a>
+								</div>
+								<div class="f-fr">
+									<span class="read">
+										<i class="fa fa-eye fs-16"></i>
+										<i class="num">213</i>
+									</span>
+									<span class="ml20">
+										<i class="fa fa-comments fs-16"></i>
+										<a href="javascript:void(0)" class="num fc-grey">1</a>
+									</span>
+								</div>
+							</aside>
+						</section>
+						<section class="article-item zoomIn article">
+							<div class="fc-flag">置顶</div>
+							<h5 class="title">
+								<span class="fc-blue">【原创】</span>
+								<a href="read.html">Java学习路线推荐</a>
+							</h5>
+							<div class="time">
+								<span class="day">1</span>
+								<span class="month fs-18">7<span class="fs-14">月</span></span>
+								<span class="year fs-18 ml10">2020</span>
+							</div>
+							<div class="content">
+								<a href="read.html" class="cover img-light">
+									<img src="image/java.jpg">
+								</a>
+								这篇文章是为了介绍自己自学用过的Java视频资料。本套整合教程总共180+G，共450+小时。考虑到绝大部分视频至少要看两遍，而且视频总时长并不代表学习时长，所以零基础初学者总学习时间大约为：600小时视频时长
+								+ 100小时理解 +
+								100小时练习，至少需要800小时。你可能觉得自己能一天学习8小时，实际上平均下来每天能学4小时都算厉害了。总会有各种原因，比如当天内容太难，公司聚会，要出差等等。如果周末你也是坚持学习，那么最理想状况下，6个半月就可以学完，达到工作后能被人带的水平。但我知道那其实基本不可能。
+							</div>
+							<div class="read-more">
+								<a href="read.html" class="fc-black f-fwb">继续阅读</a>
+							</div>
+							<aside class="f-oh footer">
+								<div class="f-fl tags">
+									<span class="fa fa-tags fs-16"></span>
+									<a class="tag">java路线</a>
+								</div>
+								<div class="f-fr">
+									<span class="read">
+										<i class="fa fa-eye fs-16"></i>
+										<i class="num">213</i>
+									</span>
+									<span class="ml20">
+										<i class="fa fa-comments fs-16"></i>
+										<a href="javascript:void(0)" class="num fc-grey">1</a>
+									</span>
+								</div>
+							</aside>
+						</section>
+						<section class="article-item zoomIn article">
+							<div class="fc-flag">置顶</div>
+							<h5 class="title">
+								<span class="fc-blue">【原创】</span>
+								<a href="read.html">Java学习路线推荐</a>
+							</h5>
+							<div class="time">
+								<span class="day">1</span>
+								<span class="month fs-18">7<span class="fs-14">月</span></span>
+								<span class="year fs-18 ml10">2020</span>
+							</div>
+							<div class="content">
+								<a href="read.html" class="cover img-light">
+									<img src="image/java.jpg">
+								</a>
+								这篇文章是为了介绍自己自学用过的Java视频资料。本套整合教程总共180+G，共450+小时。考虑到绝大部分视频至少要看两遍，而且视频总时长并不代表学习时长，所以零基础初学者总学习时间大约为：600小时视频时长
+								+ 100小时理解 +
+								100小时练习，至少需要800小时。你可能觉得自己能一天学习8小时，实际上平均下来每天能学4小时都算厉害了。总会有各种原因，比如当天内容太难，公司聚会，要出差等等。如果周末你也是坚持学习，那么最理想状况下，6个半月就可以学完，达到工作后能被人带的水平。但我知道那其实基本不可能。
+							</div>
+							<div class="read-more">
+								<a href="read.html" class="fc-black f-fwb">继续阅读</a>
+							</div>
+							<aside class="f-oh footer">
+								<div class="f-fl tags">
+									<span class="fa fa-tags fs-16"></span>
+									<a class="tag">java路线</a>
+								</div>
+								<div class="f-fr">
+									<span class="read">
+										<i class="fa fa-eye fs-16"></i>
+										<i class="num">213</i>
+									</span>
+									<span class="ml20">
+										<i class="fa fa-comments fs-16"></i>
+										<a href="javascript:void(0)" class="num fc-grey">1</a>
+									</span>
+								</div>
+							</aside>
+						</section>
+					</article>
+				</div>
+			</div>
+			<div class="col-other">
+				<div class="inner">
+					<div class="other-item" id="categoryandsearch">
+						<div class="search">
+							<label class="search-wrap">
+								<input type="text" id="searchtxt" placeholder="输入关键字搜索" />
+								<span class="search-icon">
+									<i class="fa fa-search"></i>
+								</span>
+							</label>
+							<ul class="search-result"></ul>
+						</div>
+						<ul class="category mt20" id="category">
+							<li data-index="0" class="slider"></li>
+							<li data-index="1"><a href="/Blog/Article">全部文章</a></li>
+							<li data-index="2"><a href="/Blog/Article/1/">Java</a></li>
+							<li data-index="3"><a href="/Blog/Article/2/">前端</a></li>
+							<li data-index="4"><a href="/Blog/Article/3/">Python</a></li>
+							<li data-index="5"><a href="/Blog/Article/4/">PHP</a></li>
+							<li data-index="6"><a href="/Blog/Article/5/">其它</a></li>
+						</ul>
+					</div>
+					<!--右边悬浮 平板或手机设备显示-->
+					<div class="category-toggle"><i class="layui-icon">&#xe603;</i></div>
+					<div class="article-category">
+						<div class="article-category-title">分类导航</div>
+						<a href="/Blog/Article/1/">Java</a>
+						<a href="/Blog/Article/2/">前端</a>
+						<a href="/Blog/Article/3/">Python</a>
+						<a href="/Blog/Article/4/">PHP</a>
+						<a href="/Blog/Article/5/">其它</a>
+						<div class="f-cb"></div>
+					</div>
+					<!--遮罩-->
+					<div class="blog-mask animated layui-hide"></div>
+					<div class="other-item">
+						<h5 class="other-item-title">热门文章</h5>
+						<div class="inner">
+							<ul class="hot-list-article">
+								<li> <a href="/Blog/Read/9">SpringBoot 入门爬虫项目实战</a></li>
+								<li> <a href="/Blog/Read/12">SpringBoot 2.x 教你快速入门</a></li>
+								<li> <a href="/Blog/Read/13">java学习路线</a></li>
+								<li> <a href="/Blog/Read/4">基于SpringBoot+JWT+Redis跨域单点登录的实现</a></li>
+								<li> <a href="/Blog/Read/7">SpringBoot 中如何使用SwaggerAPI接口文档？</a></li>
+								<li> <a href="/Blog/Read/11">小白轻松入门Redis</a></li>
+								<li> <a href="/Blog/Read/14">微信一键登录功能的实现</a></li>
+								<li> <a href="/Blog/Read/8">NPOI导入导出Excel</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="other-item">
+						<h5 class="other-item-title">置顶推荐</h5>
+						<div class="inner">
+							<ul class="hot-list-article">
+								<li> <a href="/Blog/Read/16">java学习路线</a></li>
+								<li> <a href="/Blog/Read/14">基于SpringBoot+JWT+Redis跨域单点登录的实现</a></li>
+								<li> <a href="/Blog/Read/9">小白轻松入门Redis</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="other-item">
+						<h5 class="other-item-title">最近访客</h5>
+						<div class="inner">
+							<dl class="vistor">
+								<dd><a href="javasript:;"><img src="image/a1.png"><cite>Anonymous</cite></a></dd>
+								<dd><a href="javasript:;"><img src="image/a4.png"><cite>Dekstra</cite></a></dd>
+								<dd><a href="javasript:;"><img src="image/a2.png"><cite>惜i</cite></a></dd>
+								<dd><a href="javasript:;"><img src="image/a3.png"><cite>↙Aㄨ计划 ◆莪↘</cite></a></dd>
+								<dd><a href="javasript:;"><img src="image/a4.png"><cite>.</cite></a></dd>
+								<dd><a href="javasript:;"><img src="image/a1.png"><cite>Lambert.</cite></a></dd>
+								<dd><a href="javasript:;"><img src="image/a2.png"><cite>64ღ</cite></a></dd>
+								<dd><a href="javasript:;"><img src="image/a3.png"><cite>doBoor</cite></a></dd>
+								<dd><a href="javasript:;"><img src="image/a4.png"><cite>毛毛小妖</cite></a></dd>
+								<dd><a href="javasript:;"><img src="image/a1.png"><cite>NULL</cite></a></dd>
+								<dd><a href="javasript:;"><img src="image/a2.png"><cite>吓一跳</cite></a></dd>
+								<dd><a href="javasript:;"><img src="image/a3.png"><cite>如初</cite></a></dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="grid-footer">
+		<div class="footer-fixed">
+			<div class="copyright">
+				<div class="info">
+					<div class="contact">
+						<a href="https://github.com/1301878357" class="github" target="_blank" title="Awave"><i class="fa fa-github"></i></a>
+						<a href="https://gitee.com/TaoGeZS/projects?sort=&scope=joined&state=" class="gitee" target="_blank" title="TaoGeZS"><i class="fa fa-gitee"><img class="gitee_img" src="./image/gitee.png"></i></a>
+						<a href="tencent://message/?uin=1301878357&amp;Site=http://www.qq.com&amp;Menu=yes" class="qq" target="_blank" title="1301878357"><i class="fa fa-qq"></i></a>
+						<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=FnFzYnd5OGxlVnB5bnt3f3o4dXl7" class="email" target="_blank" title="1301878357@qq.com"><i class="fa fa-envelope"></i></a>
+						<!-- <a target="_blank"  style="text-decoration:none;">aaa</a> -->
+						<a href="javascript:void(0)" class="weixin" title="lt94ace"><i class="fa fa-weixin"></i></a>
+					</div>
+					<p class="mt05">
+						Copyright &copy; 2022-2032 &nbsp;&nbsp; Awave个人博客 &nbsp;&nbsp;All Rights Reserved V.1.0.0
+					</p>
+					<div class="put_on_records">
+						<div class="ps">
+							<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010602001732" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="./image/batb.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px;">川公网安备 51010602001732号</p></a>
+						</div>
+						<div class="icp">
+							<a href="http://beian.miit.gov.cn" target="_blank">蜀ICP备2022014954号</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="layui/layui.js"></script>
+	<script src="js/yss/gloable.js"></script>
+	<script src="js/plugins/nprogress.js"></script>
+	<script>
+		NProgress.start();
+	</script>
+	<script src="js/yss/article.js"></script>
+	<script>
+		window.onload = function () {
+			NProgress.done();
+		};
+	</script>
+</body>
+
+</html>
